@@ -83,7 +83,7 @@
         </div>
         <div class="column is-half">
           <figure class="figure">
-            <img src="images/fig1_overview.jpg" alt="ScalpVision pipeline overview showing label‑free hair segmentation (pseudo‑labels + automatic SAM prompting) and mask‑guided diffusion translation (DiffuseIT‑M).">
+            <img src="./static/images/fig1_overview.jpg" alt="ScalpVision pipeline overview showing label‑free hair segmentation (pseudo‑labels + automatic SAM prompting) and mask‑guided diffusion translation (DiffuseIT‑M).">
             <figcaption><strong>Figure 1.</strong> Pipeline overview.</figcaption>
           </figure>
         </div>
@@ -100,7 +100,7 @@
         <p>We first train a naive segmentation model on <em>synthetic image/label pairs</em> drawn over hair‑free scalp patches to simulate hair curves and dandruff noise. The coarse mask \(\hat{M}\) informs an <em>automatic point‑prompting</em> routine for SAM, which samples positive points from skeletonized hair regions and negative points from the complement. We then ensemble with a logical AND to obtain the final mask \(M = \hat{M} \wedge M_{AP}\) and remove small connected components.</p>
         <div class="grid-2 mt-4">
           <figure class="figure">
-            <img src="images/fig3_segmentation_comparison.jpg" alt="Qualitative hair segmentation comparisons across methods: GT, prior CV baselines, SAM, our \^M, our M_AP, and final M.">
+            <img src="./static/images/fig3_segmentation_comparison.jpg" alt="Qualitative hair segmentation comparisons across methods: GT, prior CV baselines, SAM, our \^M, our M_AP, and final M.">
             <figcaption><strong>Figure 3.</strong> Hair segmentation comparisons.</figcaption>
           </figure>
           <div class="card">
@@ -131,11 +131,11 @@
         <p>To combat class imbalance and preserve hair content, we adopt a training‑free, mask‑guided diffusion translation that blends target scalp style onto non‑hair regions while keeping hairlines intact. A composite objective (style, content, semantic, mask‑preservation, and range losses) guides the reverse process; masking enforces edits on scalp (\(1 - M\)) while keeping hair pixels fixed.</p>
         <div class="grid-2 mt-4">
           <figure class="figure">
-            <img src="images/fig4_translation.jpg" alt="Image translation results comparing DiffuseIT‑M versus DiffuseIT and AGG, showing preserved hair content with transferred scalp condition.">
+            <img src="./static/images/fig4_translation.jpg" alt="Image translation results comparing DiffuseIT‑M versus DiffuseIT and AGG, showing preserved hair content with transferred scalp condition.">
             <figcaption><strong>Figure 4.</strong> Translation results vs. baselines.</figcaption>
           </figure>
           <figure class="figure">
-            <img src="images/fig5_mask_guidance.jpg" alt="Ablation of mask guidance choices (none, full, M, 1−M) illustrating that 1−M best preserves hair while transferring scalp condition.">
+            <img src="./static/images/fig5_mask_guidance.jpg" alt="Ablation of mask guidance choices (none, full, M, 1−M) illustrating that 1−M best preserves hair while transferring scalp condition.">
             <figcaption><strong>Figure 5.</strong> Effect of mask guidance.</figcaption>
           </figure>
         </div>
@@ -168,7 +168,7 @@
       <div class="columns">
         <div class="column is-5">
           <figure class="figure">
-            <img src="images/fig2_distribution.jpg" alt="Pie charts or bars showing the class distribution (good/mild/moderate/severe) for dandruff, sebum, and erythema.">
+            <img src="./static/images/fig2_distribution.jpg" alt="Pie charts or bars showing the class distribution (good/mild/moderate/severe) for dandruff, sebum, and erythema.">
             <figcaption><strong>Figure 2.</strong> Data distribution of severities per condition.</figcaption>
           </figure>
         </div>
@@ -229,7 +229,7 @@
       <pre class="codeblock"><code>@inproceedings{kim2025scalpvision,
   title     = {Scalp Diagnostic System With Label-Free Segmentation and Training-Free Image Translation},
   author    = {Kim, Youngmin and Kim, Saejin and Moon, Hoyeon and Yu, Youngjae and Noh, Junhyug},
-  booktitle = {Proceedings of the MICCAI Workshop (to appear)},
+  booktitle = {Proceedings of the MICCAI 2025},
   year      = {2025},
   url       = {https://github.com/winston1214/ScalpVision}
 }</code></pre>
