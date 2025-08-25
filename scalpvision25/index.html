@@ -248,30 +248,32 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">Advancing Text-Driven Chest X-Ray Generation with Policy-Based Reinforcement Learning</h1>
+          <h1 class="title is-2 publication-title">Scalp Diagnostic System with Label-Free Segmentation and Training-Free Image Translation</h1>
             
 
             <div class="is-size-4 publication-authors">
-              <strong><span class="author-block">Spotlight @ MICCAI 2024</span></strong>
+              <strong><span class="author-block">MICCAI 2025</span></strong>
             </div>
             <div class="is-size-4 publication-authors">
               <span class="author-block">
-                Woojung Han<sup>*</sup>,</span>
+                Youngmin Kim<sup>*</sup>,</span>
               <span class="author-block">
-                Chanyoung Kim<sup>*</sup>,</span>
+                Saejin Kim<sup>*</sup>,</span>
               <span class="author-block">
-                Dayun Ju</a>,
+                Hoyeon Moon</a>,
               </span>
               <span class="author-block">
-                Yumin Shim</a>,
+                Youngjae Yu<sup>+</sup></a>,
               </span>
               <span class="author-block">
-                Seong Jae Hwang
+                Junhyug Noh<sup>+</sup>
               </span>
             </div>
 
             <div class="is-size-4 publication-authors">
-              <span class="author-block">Yonsei University</span>
+              <span class="author-block">Yonsei University, Korea</span>
+              <span class="author-block">Ewha Womans University, Korea</span>
+              <span class="author-block">Seoul National University, Korea</span>
             </div>
 
         </div>
@@ -283,7 +285,7 @@
         <div class="publication-links">
           <!-- PDF Link. -->
           <span class="link-block">
-            <a href="https://arxiv.org/abs/2403.06516"
+            <a href="https://arxiv.org/pdf/2406.17254"
                class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
                   <i class="fas fa-file-pdf"></i>
@@ -292,7 +294,7 @@
             </a>
           </span>
           <span class="link-block">
-            <a href="https://arxiv.org/abs/2403.06516"
+            <a href="https://arxiv.org/abs/2406.17254"
                class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
                   <i class="ai ai-arxiv"></i>
@@ -302,7 +304,7 @@
           </span>
           <!-- Code Link. -->
           <span class="link-block">
-            <a href="https://github.com/MICV-yonsei/CXRL"
+            <a href="https://github.com/winston1214/ScalpVision"
                class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
                   <i class="fab fa-github"></i>
@@ -320,12 +322,12 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <div class="image-at-center">
-        <img src="./static/images/overview.png" alt="Overview of CXRL" width="80%">
+        <img src="./static/images/overview.jpg" alt="Overview of ScalpVision" width="100%">
       </div>
       <br>
       <h2 class="subtitle has-text-centered">
-        We introduce <b><i>CXRL</i></b>,
-        <br>Advancing Text-Driven Chest X-Ray Generation with Policy-Based Reinforcement Learning.
+        We introduce <b><i>ScalpVision</i></b>,
+        <br>Scalp Diagnostic System with Label-Free Segmentation and Training-Free Image Translation.
 
       </h2>
     </div>
@@ -341,10 +343,10 @@
         <div class="content has-text-justified">
           Dermatoses of the scalp affect millions of people around the world, underscoring the urgent need for early diagnosis and management of the disease.
           However, the development of a comprehensive AI-based diagnosis system encompassing these conditions remains an underexplored domain due to the challenges associated with data imbalance and the costly nature of labeling.
-          To address these issues, we propose ``\textsc{ScalpVision}'', an AI-driven system for the holistic diagnosis of scalp diseases.
-          In \textsc{ScalpVision}, effective hair segmentation is achieved using pseudo image-label pairs and an innovative prompting method in the absence of traditional hair masking labels.
-          Additionally, \textsc{ScalpVision} introduces \emph{DiffuseIT-M}, a generative model adopted for dataset augmentation while maintaining hair information, facilitating improved predictions of scalp disease severity.
-          Our experimental results affirm \textsc{ScalpVision}'s efficiency in diagnosing a variety of scalp conditions, showcasing its potential as a valuable tool in dermatological care.
+          To address these issues, we propose <em>ScalpVision</em>, an AI-driven system for the holistic diagnosis of scalp diseases.
+          In <em>ScalpVision</em>, effective hair segmentation is achieved using pseudo image-label pairs and an innovative prompting method in the absence of traditional hair masking labels.
+          Additionally, <em>ScalpVision</em> introduces <strong>DiffuseIT‑M</strong>, a generative model adopted for dataset augmentation while maintaining hair information, facilitating improved predictions of scalp disease severity.
+          Our experimental results affirm <em>ScalpVision</em>'s efficiency in diagnosing a variety of scalp conditions, showcasing its potential as a valuable tool in dermatological care.
         </div>
       </div>
     </div>
@@ -372,11 +374,11 @@
         <div class="content has-text-justified">
           <img src="./static/images/overview.jpg" alt="Main figure">
           <p>
-            A detailed illustration of our mask guidance and objective terms used in DiffuseIT‑M to steer edits to scalp while preserving hair:
+            A high-level view of the full system. We first obtain a reliable hair mask without manual labels, then use it to steer training-free diffusion for data augmentation, and finally train a scalp-condition classifier on real+augmented images.
             <ul>
-              <li><b>Mask‑Preservation</b>: restrict edits outside hair pixels to maintain hairlines and fiber texture.</li>
-              <li><b>Semantic/Style Objectives</b>: enforce target scalp condition while keeping content coherence.</li>
-              <li><b>Range/Perceptual Terms</b>: stabilize translation and prevent color drift and artifacts.</li>
+              <li><b>Label-Free Hair Masking (M̂ → M_AP → M)</b>: Train a naive segmenter on pseudo image–label pairs to get a coarse mask M̂, generate automatic positive/negative point prompts from M̂ for SAM to produce M_AP, then AND-ensemble (M = M̂ ∧ M_AP) and clean small components to form a robust hair mask.</li>
+              <li><b>Mask-Guided Translation (DiffuseIT-M)</b>: Perform training-free diffusion editing that applies style/semantic changes only to scalp pixels (1−M) while freezing hair (M). A composite objective (style, content, semantic, mask-preservation, range) guides the reverse denoising so hairlines and fiber texture remain intact.</li>
+              <li><b>Scalp Condition Diagnosis</b>: Use real images + DiffuseIT-M augmentations to address class imbalance and train a classifier that detects dandruff, excess sebum, erythema and their severity (good/mild/moderate/severe)—improving robustness on under-represented conditions.</li>
              </ul>
           </p>
         </div>
@@ -397,12 +399,12 @@
         <h4 class="title is-4 has-text-centered">Hair segmentation comparison between previous models and ours method</h4>
         <section class="hero is-light is-small">
           <div class="content has-text-centered">
-            <img src="./static/images/segmentation.jpg" alt="Qualitative ablation">
+            <img src="./static/images/segmentation_comparison.jpg" alt="Qualitative ablation">
           </div>
         </section>
         <div class="content has-text-centered">
           <p>
-            Comparison of various segmentation methods on hair. ``GT'' represents the mask images for which we have manually annotated the pixel segmentation.
+            Comparison of various segmentation methods on hair. "GT" represents the mask images for which we have manually annotated the pixel segmentation.
           </p>
         </div>
 
@@ -423,12 +425,12 @@
         <h4 class="title is-4 has-text-centered">Additional Qualitative results</h4>
         <section class="hero is-light is-small">
           <div class="content has-text-centered">
-            <img src="./static/images/mask_ablation.jpg" alt="Qualitative ablation">
+            <img src="./static/images/mask_guidance.jpg" alt="Qualitative ablation">
           </div>
         </section>
         <div class="content has-text-centered">
           <p>
-            Image translation results using various mask guidance. Note that our approach is guided by $1 - M$.
+            Image translation results using various mask guidance.
           </p>
         </div>
 
@@ -449,8 +451,8 @@
         <h4 class="title is-4 has-text-centered">Hair Segmentation and Translation Results</h4>
         <div class="content has-text-centered">
           <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-            <img src="./static/images/segmentation_table.jpg" alt="segmentation-table" width="45%">
-            <img src="./static/images/translation_table.jpg" alt="translation-table" width="45%">
+            <img src="./static/images/segmentation_table.jpg" alt="segmentation-table" width="40%">
+            <img src="./static/images/translation_table.jpg" alt="translation-table" width="30%">
           </div>
           <p>
             Performance comparison of hair segmentation and scalp image translation on the test set.
@@ -460,9 +462,9 @@
         <br>
         <h4 class="title is-4 has-text-centered">Classification Results</h4>
         <div class="content has-text-centered">
-          <img src="./static/images/classification_table.jpg" alt="ablation" width="80%">
+          <img src="./static/images/classification_table.jpg" alt="ablation" width="100%">
           <p>
-            Performance of scalp condition classification with various augmentation methods, denoted after ``+'' symbol, on the test set. The second column displays the overall macro-F1 score, while the columns from the third onward show the F1 scores for each severity level of the three diseases
+            Performance of scalp condition classification with various augmentation methods, denoted after "+" symbol, on the test set. The second column displays the overall macro-F1 score, while the columns from the third onward show the F1 scores for each severity level of the three diseases
           </p>
         </div>
       </div>
