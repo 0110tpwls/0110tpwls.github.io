@@ -1,245 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ScalpVision: Label‑Free Hair Segmentation & Training‑Free Image Translation</title>
-  <meta name="description" content="Project page for ScalpVision: a scalp diagnostic system combining label‑free hair segmentation and training‑free, mask‑guided diffusion translation (DiffuseIT‑M).">
-  <!-- OG/nerfies-style local assets (match original zip structure) -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="static/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ScalpVision</title>
+  <meta name="description" content="ScalpVision — Label‑free hair segmentation and training‑free mask‑guided diffusion for robust scalp diagnosis." />
+
+  <!-- ===== OG nerfies-style head (match structure) ===== -->
+  <!-- (Optional) Google Analytics: remove or replace) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-PYVRSFMDRL');
+  </script>
+  <!-- MathJax v2 (kept to mirror OG), plus v3 below -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <!-- Local Bulma/Icons (paths match OG zip) -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <!-- JS (match OG ordering) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <!-- HERO -->
-  <section class="hero is-light is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">ScalpVision: Scalp Diagnostic System with <span class="has-text-link">Label‑Free Segmentation</span> and <span class="has-text-info">Training‑Free Image Translation</span></h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><b>Youngmin Kim</b><sup>†1</sup>,</span>
-              <span class="author-block"><b>Saejin Kim</b><sup>†1</sup>,</span>
-              <span class="author-block"><b>Hoyeon Moon</b><sup>1</sup>,</span>
-              <span class="author-block"><b>Youngjae Yu</b><sup>‡2</sup>,</span>
-              <span class="author-block"><b>Junhyug Noh</b><sup>‡3</sup></span>
-            </div>
-            <div class="is-size-6 publication-authors">
-              <span class="author-block">1 Yonsei University&nbsp;&nbsp;·&nbsp;&nbsp;2 Seoul National University&nbsp;&nbsp;·&nbsp;&nbsp;3 Ewha Womans University</span>
-            </div>
-            <div class="publication-awards mt-3">
-              <span class="tag is-info is-light">† Equal contribution</span>
-              <span class="tag is-link is-light">‡ Co‑supervision</span>
-              <span class="tag is-dark is-light">MICCAI Workshop 2025 (to appear)</span>
-            </div>
-            <div class="publication-links mt-4">
-              <span class="link-block">
-                <a class="button is-normal is-rounded is-dark" href="assets/paper.pdf" target="_blank">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="button is-normal is-rounded is-dark" href="#" target="_blank">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="button is-normal is-rounded is-dark" href="https://github.com/winston1214/ScalpVision" target="_blank">
-                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="button is-normal is-rounded is-dark" href="#bibtex">
-                  <span class="icon"><i class="fas fa-quote-right"></i></span><span>BibTeX</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- TEASER / OVERVIEW (top-wide figure) -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <figure class="image is-16by9">
-        <img src="static/images/fig1_overview.jpg" alt="Pipeline overview: label‑free hair segmentation (pseudo‑labels + automatic SAM prompts) and mask‑guided diffusion translation (DiffuseIT‑M).">
-      </figure>
-      <p class="has-text-grey is-size-7 has-text-centered">Figure 1: Pipeline overview.</p>
-    </div>
-  </section>
-
-  <!-- ABSTRACT -->
-  <section id="abstract" class="section">
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>Scalp disorders are prevalent yet underdiagnosed due to limited expert access and the high cost of pixel‑level labels. <em>ScalpVision</em> tackles these challenges by (i) producing robust hair masks via a <strong>label‑free</strong> pipeline that combines a pseudo‑trained segmentation model with automatic point‑prompting for SAM, and (ii) introducing <strong>DiffuseIT‑M</strong>, a <strong>training‑free, mask‑guided diffusion</strong> translation that balances class distributions while preserving hair content. The system improves scalp disease detection and severity estimation across dandruff, excess sebum, and erythema.</p>
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Scalp Diagnostic System with Label‑Free Segmentation and Training‑Free Image Translation</h1>
+          <div class="is-size-4 publication-authors">
+            <strong><span class="author-block">MICCAI Workshop 2025 (to appear)</span></strong>
           </div>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">Youngmin Kim<sup>†</sup>,</span>
+            <span class="author-block">Saejin Kim<sup>†</sup>,</span>
+            <span class="author-block">Hoyeon Moon,</span>
+            <span class="author-block">Youngjae Yu<sup>‡</sup>,</span>
+            <span class="author-block">Junhyug Noh<sup>‡</sup></span>
+          </div>
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">Yonsei University · Seoul National University · Ewha Womans University</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="column has-text-centered">
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="assets/paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="#" class="external-link button is-normal is-rounded is-dark" target="_blank">
+              <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://github.com/winston1214/ScalpVision" class="external-link button is-normal is-rounded is-dark" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+            </a>
+          </span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- METHOD -->
-  <section id="method" class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Method</h2>
-      <div class="content">
-        <h3 class="title is-4">Label‑Free Hair Segmentation</h3>
-        <p>We first train a naive segmentation model on synthetic image/label pairs drawn over hair‑free scalp patches to simulate hair curves and dandruff noise. The coarse mask M̂ informs an automatic point‑prompting routine for SAM, which samples positive points from skeletonized hair regions and negative points elsewhere. We then ensemble with a logical AND to obtain the final mask M = M̂ ∧ M<sub>AP</sub> and remove small components.</p>
-        <div class="columns is-variable is-6 mt-4">
-          <div class="column">
-            <figure>
-              <img src="static/images/fig3_segmentation_comparison.png" alt="Qualitative hair segmentation comparisons across baselines, SAM, and our variants (M̂, M_AP, final M).">
-              <figcaption class="has-text-grey is-size-7">Figure 3: Hair segmentation comparisons.</figcaption>
-            </figure>
-          </div>
-          <div class="column">
-            <div class="table-container">
-              <table class="table is-striped is-fullwidth">
-                <thead>
-                  <tr><th>Approach</th><th>Pixel‑F1</th><th>Jaccard</th><th>Dice</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Shih et&nbsp;al.</td><td>0.706</td><td>0.348</td><td>0.512</td></tr>
-                  <tr><td>Yue et&nbsp;al.</td><td>0.794</td><td>0.493</td><td>0.654</td></tr>
-                  <tr><td>Kim et&nbsp;al.</td><td>0.815</td><td>0.561</td><td>0.708</td></tr>
-                  <tr><td>SAM</td><td>0.503</td><td>0.361</td><td>0.502</td></tr>
-                  <tr><td><strong>Ours (M̂)</strong></td><td><strong>0.853</strong></td><td><strong>0.604</strong></td><td><strong>0.748</strong></td></tr>
-                  <tr><td><strong>Ours (M<sub>AP</sub>)</strong></td><td><strong>0.836</strong></td><td><strong>0.595</strong></td><td><strong>0.743</strong></td></tr>
-                  <tr><td><strong>Ours (M)</strong></td><td><strong>0.868</strong></td><td><strong>0.649</strong></td><td><strong>0.786</strong></td></tr>
-                </tbody>
-              </table>
-              <p class="has-text-grey is-size-7">Table 1: Quantitative performance on the hair‑segmentation test set.</p>
-            </div>
-          </div>
-        </div>
+<!-- ===== TEASER ===== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="image-at-center">
+        <img src="./static/images/overview.png" alt="Overview of ScalpVision pipeline" width="80%">
+      </div>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        We introduce <b><i>ScalpVision</i></b>,<br>
+        Label‑free hair segmentation + training‑free mask‑guided diffusion for robust scalp diagnosis.
+      </h2>
+    </div>
+  </div>
+</section>
 
-        <h3 class="title is-4 mt-6">DiffuseIT‑M: Mask‑Guided, Training‑Free Translation</h3>
-        <p>To combat class imbalance and preserve hair content, we adopt a training‑free, mask‑guided diffusion translation that blends target scalp style onto non‑hair regions while keeping hairlines intact. A composite objective (style, content, semantic, mask‑preservation, and range losses) guides the reverse process; masking enforces edits on scalp (1 − M) while keeping hair pixels fixed.</p>
-        <div class="columns is-variable is-6 mt-4">
-          <div class="column">
-            <figure>
-              <img src="static/images/fig4_translation.jpg" alt="Image translation results comparing DiffuseIT‑M with DiffuseIT and AGG, preserving hair while transferring scalp condition.">
-              <figcaption class="has-text-grey is-size-7">Figure 4: Translation results vs. baselines.</figcaption>
-            </figure>
-          </div>
-          <div class="column">
-            <figure>
-              <img src="static/images/fig5_mask_guidance.jpg" alt="Ablation of mask guidance choices (none, full, M, 1−M), showing that 1−M preserves hair best while editing scalp.">
-              <figcaption class="has-text-grey is-size-7">Figure 5: Effect of mask guidance.</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="table-container mt-2">
-          <table class="table is-striped is-fullwidth">
-            <thead>
-              <tr><th>Model</th><th>FID ↓</th><th>LPIPS ↓</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>DiffuseIT</td><td>138.42</td><td>0.463</td></tr>
-              <tr><td>AGG</td><td>141.70</td><td>0.492</td></tr>
-              <tr><td><strong>Ours (DiffuseIT‑M)</strong></td><td><strong>74.84</strong></td><td><strong>0.353</strong></td></tr>
-            </tbody>
-          </table>
-          <p class="has-text-grey is-size-7">Table 2: Quantitative analysis of translation fidelity.</p>
+<!-- ===== ABSTRACT ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Scalp disorders are prevalent yet underdiagnosed due to limited expert access and the high cost of pixel‑level labels. <em>ScalpVision</em> tackles these challenges by (i) producing robust hair masks via a <strong>label‑free</strong> pipeline that combines a pseudo‑trained segmentation model with automatic point‑prompting for SAM, and (ii) introducing <strong>DiffuseIT‑M</strong>, a <strong>training‑free, mask‑guided diffusion</strong> translation that balances class distributions while preserving hair content. The system improves scalp disease detection and severity estimation across dandruff, excess sebum, and erythema.</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- DATA & CLASSIFICATION RESULTS -->
-  <section id="results" class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Data & Results</h2>
-      <div class="columns is-variable is-6">
-        <div class="column is-5">
-          <figure>
-            <img src="static/images/fig2_distribution.jpg" alt="Class distribution across severities for dandruff, excess sebum, and erythema.">
-            <figcaption class="has-text-grey is-size-7">Figure 2: Severity distribution per condition.</figcaption>
-          </figure>
+    <br><br><br>
+
+    <!-- ===== VIDEO (optional; keep section to mirror OG layout) ===== -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <!-- Replace src with your video or remove the iframe if not needed -->
+          <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/XXXXXXXX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
-        <div class="column is-7">
-          <p>The AI‑Hub scalp dataset (95,910 images at 640×480), annotated by dermatologists for <em>dandruff</em>, <em>excess sebum</em>, and <em>erythema</em> with four severities (good/mild/moderate/severe), is highly skewed toward mild cases. We additionally evaluate segmentation on 150 manually labeled images.</p>
-        </div>
-      </div>
-      <div class="table-container mt-4">
-        <table class="table is-striped is-fullwidth is-narrow">
-          <thead>
-            <tr>
-              <th>Model</th>
-              <th>F1 (macro)</th>
-              <th colspan="4">Dandruff</th>
-              <th colspan="4">Sebum</th>
-              <th colspan="4">Erythema</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th></th>
-              <th>good</th><th>mild</th><th>moderate</th><th>severe</th>
-              <th>good</th><th>mild</th><th>moderate</th><th>severe</th>
-              <th>good</th><th>mild</th><th>moderate</th><th>severe</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>DenseNet</td><td>0.582</td><td>0.796</td><td>0.514</td><td>0.592</td><td>0.614</td><td>0.554</td><td>0.601</td><td>0.641</td><td>0.000</td><td>0.776</td><td>0.729</td><td>0.565</td><td>0.601</td></tr>
-            <tr><td>+ Gaussian Noise</td><td>0.567</td><td>0.780</td><td>0.497</td><td>0.566</td><td>0.597</td><td>0.471</td><td>0.581</td><td>0.595</td><td>0.000</td><td>0.751</td><td>0.712</td><td>0.614</td><td>0.635</td></tr>
-            <tr><td>+ AugMix</td><td>0.525</td><td>0.789</td><td>0.501</td><td>0.589</td><td>0.000</td><td>0.504</td><td>0.588</td><td>0.634</td><td>0.000</td><td>0.743</td><td>0.718</td><td>0.596</td><td>0.585</td></tr>
-            <tr><td>+ DiffuseIT</td><td>0.608</td><td>0.809</td><td>0.482</td><td>0.604</td><td>0.650</td><td>0.536</td><td>0.613</td><td>0.625</td><td>0.202</td><td>0.774</td><td>0.740</td><td>0.621</td><td>0.639</td></tr>
-            <tr><td>+ AGG</td><td>0.610</td><td>0.811</td><td>0.480</td><td>0.591</td><td>0.654</td><td>0.518</td><td>0.598</td><td>0.612</td><td>0.300</td><td>0.771</td><td>0.740</td><td>0.629</td><td>0.621</td></tr>
-            <tr><td><strong>+ Ours</strong></td><td><strong>0.636</strong></td><td><strong>0.820</strong></td><td><strong>0.541</strong></td><td><strong>0.625</strong></td><td><strong>0.665</strong></td><td><strong>0.536</strong></td><td><strong>0.617</strong></td><td><strong>0.641</strong></td><td><strong>0.430</strong></td><td>0.758</td><td>0.734</td><td>0.621</td><td>0.641</td></tr>
-            <tr><td>EfficientFormerV2</td><td>0.569</td><td>0.795</td><td>0.417</td><td>0.598</td><td>0.628</td><td>0.526</td><td>0.565</td><td>0.628</td><td>0.000</td><td>0.772</td><td>0.709</td><td>0.623</td><td>0.569</td></tr>
-            <tr><td>+ Gaussian Noise</td><td>0.562</td><td>0.780</td><td>0.477</td><td>0.566</td><td>0.633</td><td>0.460</td><td>0.585</td><td>0.550</td><td>0.000</td><td>0.742</td><td>0.714</td><td>0.598</td><td>0.637</td></tr>
-            <tr><td>+ AugMix</td><td>0.577</td><td>0.789</td><td>0.494</td><td>0.592</td><td>0.635</td><td>0.519</td><td>0.593</td><td>0.623</td><td>0.000</td><td>0.746</td><td>0.724</td><td>0.620</td><td>0.590</td></tr>
-            <tr><td>+ DiffuseIT</td><td>0.596</td><td>0.798</td><td>0.441</td><td>0.598</td><td>0.632</td><td>0.526</td><td>0.595</td><td>0.606</td><td>0.236</td><td>0.766</td><td>0.715</td><td>0.612</td><td>0.621</td></tr>
-            <tr><td>+ AGG</td><td>0.610</td><td>0.801</td><td>0.509</td><td>0.604</td><td>0.626</td><td>0.511</td><td>0.583</td><td>0.608</td><td>0.300</td><td>0.787</td><td>0.736</td><td>0.624</td><td>0.628</td></tr>
-            <tr><td><strong>+ Ours</strong></td><td><strong>0.635</strong></td><td><strong>0.807</strong></td><td><strong>0.529</strong></td><td><strong>0.619</strong></td><td><strong>0.669</strong></td><td><strong>0.535</strong></td><td><strong>0.613</strong></td><td><strong>0.632</strong></td><td><strong>0.406</strong></td><td><strong>0.781</strong></td><td><strong>0.738</strong></td><td><strong>0.639</strong></td><td><strong>0.648</strong></td></tr>
-          </tbody>
-        </table>
-        <p class="has-text-grey is-size-7">Table 3: Severity classification with different augmentations.</p>
       </div>
     </div>
-  </section>
 
-  <!-- BIBTEX -->
-  <section id="bibtex" class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">BibTeX</h2>
-      <pre><code>@inproceedings{kim2025scalpvision,
-  title     = {Scalp Diagnostic System With Label-Free Segmentation and Training-Free Image Translation},
+  </div>
+</section>
+
+<!-- ===== METHOD ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3 has-text-centered">Method</h3>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Pipeline</h4>
+        <div class="content has-text-justified">
+          <img src="./static/images/overview.png" alt="Pipeline figure">
+          <br>
+        </div>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Mask Guidance & Objectives</h4>
+        <div class="content has-text-justified">
+          <img src="./static/images/feedback.png" alt="Mask guidance and objective terms diagram">
+          <p>
+            A detailed illustration of our mask guidance and objective terms used in DiffuseIT‑M to steer edits to scalp while preserving hair:
+            <ul>
+              <li><b>Mask‑Preservation</b>: restrict edits outside hair pixels to maintain hairlines and fiber texture.</li>
+              <li><b>Semantic/Style Objectives</b>: enforce target scalp condition while keeping content coherence.</li>
+              <li><b>Range/Perceptual Terms</b>: stabilize translation and prevent color drift and artifacts.</li>
+            </ul>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUALITATIVE RESULTS ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3 has-text-centered">Qualitative Results</h3>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Comparison between previous models and ours</h4>
+        <section class="hero is-light is-small">
+          <div class="content has-text-centered">
+            <img src="./static/images/result1.png" alt="Qualitative comparison vs baselines">
+          </div>
+        </section>
+        <div class="content has-text-centered">
+          <p>Comparison with prior augmentation/translation baselines (e.g., DiffuseIT, AGG). Colored texts/arrows match visual cues.</p>
+        </div>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Additional qualitative results</h4>
+        <section class="hero is-light is-small">
+          <div class="content has-text-centered">
+            <img src="./static/images/result2.png" alt="Additional qualitative results grid">
+          </div>
+        </section>
+        <div class="content has-text-centered">
+          <p>Additional samples showing scalp‑condition transfer with preserved hair content. Variants without certain objectives illustrate their effect.</p>
+        </div>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Qualitative ablation</h4>
+        <section class="hero is-light is-small">
+          <div class="content has-text-centered">
+            <img src="./static/images/ablation.png" alt="Qualitative ablation on mask guidance/objectives">
+          </div>
+        </section>
+        <div class="content has-text-centered">
+          <p>Rows illustrate posture/structure preservation and semantic agreement as objectives are toggled.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVALUATION / TABLES ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-3 has-text-centered">Evaluation</h3>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Evaluation Metrics</h4>
+        <div class="content has-text-centered">
+          <img src="./static/images/table1.png" alt="Evaluation metrics table" width="80%">
+          <p>The table compares performance across multiple metrics (e.g., FID/LPIPS for translation, Dice/Jaccard for segmentation).</p>
+        </div>
+
+        <br>
+        <h4 class="title is-4 has-text-centered">Classification & Quality</h4>
+        <div class="content has-text-centered">
+          <img src="./static/images/table2.png" alt="Classification and quality table" width="80%">
+          <p>Comparative analysis of severity classification and image quality under different augmentation choices.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIBTEX ===== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{kim2025scalpvision,
   author    = {Kim, Youngmin and Kim, Saejin and Moon, Hoyeon and Yu, Youngjae and Noh, Junhyug},
-  booktitle = {Proceedings of the MICCAI 2025},
-  year      = {2025},
-  url       = {https://github.com/winston1214/ScalpVision}
+  title     = {Scalp Diagnostic System with Label-Free Segmentation and Training-Free Image Translation},
+  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI) Workshop},
+  year      = {2025}
 }</code></pre>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>© 2025 The Authors. This page follows the lightweight Bulma project style used in many academic pages.</p>
+<!-- ===== FOOTER (mirrors OG license text) ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This page adopts the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> style of the nerfies project page — please link back in the footer if you reuse it, and remember to remove the analytics code in the header if not needed.
+          </p>
+        </div>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- JS (match OG layout expectations) -->
-  <script src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-  <script>
-    // Minimal hooks in case you want a carousel/slider like the OG template
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.bulmaCarousel) { bulmaCarousel.attach('.carousel', { slidesToScroll: 1, slidesToShow: 1, loop: true }); }
-      if (window.bulmaSlider) { bulmaSlider.attach(); }
-    });
-  </script>
+<!-- (Optional) tag-height script like OG -->
+<script src="./static/js/tag-height.js"></script>
+
 </body>
 </html>
