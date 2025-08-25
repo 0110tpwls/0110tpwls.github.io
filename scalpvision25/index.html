@@ -343,10 +343,10 @@
         <div class="content has-text-justified">
           Dermatoses of the scalp affect millions of people around the world, underscoring the urgent need for early diagnosis and management of the disease.
           However, the development of a comprehensive AI-based diagnosis system encompassing these conditions remains an underexplored domain due to the challenges associated with data imbalance and the costly nature of labeling.
-          To address these issues, we propose <em>ScalpVision</em>, an AI-driven system for the holistic diagnosis of scalp diseases.
-          In <em>ScalpVision</em>, effective hair segmentation is achieved using pseudo image-label pairs and an innovative prompting method in the absence of traditional hair masking labels.
-          Additionally, <em>ScalpVision</em> introduces <strong>DiffuseIT‑M</strong>, a generative model adopted for dataset augmentation while maintaining hair information, facilitating improved predictions of scalp disease severity.
-          Our experimental results affirm <em>ScalpVision</em>'s efficiency in diagnosing a variety of scalp conditions, showcasing its potential as a valuable tool in dermatological care.
+          To address these issues, we propose <strong><em>ScalpVision</em></strong>, an AI-driven system for the holistic diagnosis of scalp diseases.
+          In <strong><em>ScalpVision</em></strong>, effective hair segmentation is achieved using pseudo image-label pairs and an innovative prompting method in the absence of traditional hair masking labels.
+          Additionally, <strong><em>ScalpVision</em></strong> introduces <strong>DiffuseIT‑M</strong>, a generative model adopted for dataset augmentation while maintaining hair information, facilitating improved predictions of scalp disease severity.
+          Our experimental results affirm <strong><em>ScalpVision</em></strong>'s efficiency in diagnosing a variety of scalp conditions, showcasing its potential as a valuable tool in dermatological care.
         </div>
       </div>
     </div>
@@ -376,7 +376,7 @@
           <p>
             A high-level view of the full system. We first obtain a reliable hair mask without manual labels, then use it to steer training-free diffusion for data augmentation, and finally train a scalp-condition classifier on real+augmented images.
             <ul>
-              <li><b>Label-Free Hair Masking (M̂ → M_AP → M)</b>: Train a naive segmenter on pseudo image–label pairs to get a coarse mask M̂, generate automatic positive/negative point prompts from M̂ for SAM to produce M_AP, then AND-ensemble (M = M̂ ∧ M_AP) and clean small components to form a robust hair mask.</li>
+              <li><b>Label-Free Hair Masking (M̂ → M<sub>AP</sub> → M)</b>: Train a naive segmenter on pseudo image–label pairs to get a coarse mask M̂, generate automatic positive/negative point prompts from M̂ for SAM to produce M<sub>AP</sub>, then AND-ensemble (M = M̂ ∧ M<sub>AP</sub>) and clean small components to form a robust hair mask.</li>
               <li><b>Mask-Guided Translation (DiffuseIT-M)</b>: Perform training-free diffusion editing that applies style/semantic changes only to scalp pixels (1−M) while freezing hair (M). A composite objective (style, content, semantic, mask-preservation, range) guides the reverse denoising so hairlines and fiber texture remain intact.</li>
               <li><b>Scalp Condition Diagnosis</b>: Use real images + DiffuseIT-M augmentations to address class imbalance and train a classifier that detects dandruff, excess sebum, erythema and their severity (good/mild/moderate/severe)—improving robustness on under-represented conditions.</li>
              </ul>
