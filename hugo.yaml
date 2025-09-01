@@ -1,5 +1,5 @@
 baseURL: "https://sayjean.github.io/"
-title: Lee Hsin-Ying
+title: Saejin Kim
 pagination: 
   pagerSize: 20
 theme: PaperMod
@@ -25,7 +25,7 @@ params:
   defaultTheme: light
   disableThemeToggle: false
 
-  ShowOnlySelectedPubs: false
+  ShowOnlySelectedPubs: true
   ShowReadingTime: true
   ShowShareButtons: false
   ShowPostNavLinks: true
