@@ -71,7 +71,7 @@ params:
       
     imageUrl: "imgs/profile.jpg"
     imageTitle: profile
-    imageWidth: 120
+    imageWidth: 60
     imageHeight: 120
   
   socialIcons:
