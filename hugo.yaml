@@ -70,8 +70,8 @@ params:
       
     imageUrl: "imgs/profile.jpg"
     imageTitle: profile
-    imageWidth: 120
-    imageHeight: 180
+    imageWidth: 150
+    imageHeight: 150
   
   socialIcons:
     - name: email
