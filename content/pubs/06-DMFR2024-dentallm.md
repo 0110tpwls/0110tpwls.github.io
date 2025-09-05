@@ -10,6 +10,6 @@ authors:
   - name: <strong>Saejin Kim</strong>
     home: "#"
   - name: Kug Jin Jeon
-selected: true
+selected: false
 paper: https://academic.oup.com/dmfr/article/53/6/390/7689681?login=true
 ---
