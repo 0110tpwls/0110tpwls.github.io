@@ -1,0 +1,28 @@
+{{ define "main" }}
+<main class="home container">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="columns is-vcentered">
+        <div class="column is-three-quarters">
+          <h1 class="title">{{ site.Params.homeInfoParams.Title }}</h1>
+          <div class="content">{{ site.Params.homeInfoParams.Content | safeHTML }}</div>
+        </div>
+        <div class="column has-text-centered">
+          {{ with site.Params.homeInfoParams.imageUrl }}
+          <img src="{{ . }}" alt="{{ site.Params.homeInfoParams.imageTitle }}" style="max-width: {{ site.Params.homeInfoParams.imageWidth }}px; height: auto;"/>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title is-3">Selected Publications</h2>
+    {{- $pubs := where (where site.RegularPages "Section" "pubs") ".Params.selected" true -}}
+    {{- range $pubs.ByDate.Reverse }}
+      {{- partial "pub_item.html" . -}}
+    {{- end }}
+  </section>
+</main>
+{{ end }}
+

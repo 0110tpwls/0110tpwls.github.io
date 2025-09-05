@@ -6,10 +6,10 @@ theme: PaperMod
 
 enableRobotsTXT: true
 buildDrafts: false
-buildFuture: true
+buildFuture: false
 buildExpired: false
 
-googleAnalytics: G-R2M9JEHJLQ
+googleAnalytics: 
 
 minify:
   disableXML: true
@@ -19,19 +19,19 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Saejin Kim 김세진
   description: "Student researcher"
-  keywords: ["multi-modal language understanding", "medical image analysis", "researcher"]
-  author: Me
+  keywords: ["computer vision", "machine learning", "researcher"]
+  author: Saejin Kim
   images: ["imgs/profile.jpg"]
   defaultTheme: light
   disableThemeToggle: false
 
   ShowOnlySelectedPubs: true
-  ShowReadingTime: false
+  ShowReadingTime: true
   ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: false
-  ShowWordCount: false
+  ShowWordCount: true
   ShowRssButtonInSectionTermList: false
   UseHugoToc: true
   disableSpecial1stPost: false
@@ -48,7 +48,6 @@ params:
     favicon: "/favicon.ico"
     favicon16x16: "/favicon-16x16.png"
     favicon32x32: "/favicon-32x32.png"
-    favicon96x96: "/favicon-96x96.png"
     apple_touch_icon: "/apple-touch-icon.png"
     safari_pinned_tab: "/safari-pinned-tab.svg"
 
@@ -65,14 +64,14 @@ params:
   homeInfoParams:
     Title: Saejin Kim 김세진
     Content: |
-      I am a first-year PhD student at Yonsei University advised by Prof. [Youngjae Yu](https://scholar.google.com/citations?user=WDO24ZYAAAAJ&hl=ko).
-      I'm interested in developing unified language and vision models for diverse domains. 
-      My research areas are multi-modal language understanding, and medical image analysis.
+     I am a second-year master's student at Yonsei University advised by Prof. [Youngjae Yu](https://scholar.google.com/citations?user=WDO24ZYAAAAJ&hl=ko).
+      My research interests include computer vision, deep learning, and AI applications in healthcare.
+      I'm passionate about developing intelligent systems that can benefit society.
       
-    imageUrl: "/imgs/profile.jpg"
+    imageUrl: "imgs/profile.jpg"
     imageTitle: profile
-    imageWidth: 60
-    imageHeight: 120
+    imageWidth: 120
+    imageHeight: 180
   
   socialIcons:
     - name: email
@@ -86,7 +85,7 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: -1-9r4oo9sAFcKiCWEg8koj3qpJdLUOO3-2L_E0jYqs
+      SiteVerificationTag: 
 
   cover:
     hidden: false # hide everywhere but not in structured data

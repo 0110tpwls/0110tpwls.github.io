@@ -1,0 +1,15 @@
+{{ define "main" }}
+<main class="container">
+  <header>
+    <h1>{{ .Title }}</h1>
+  </header>
+  {{- $pages := .Pages -}}
+  {{- if and (eq .Section "pubs") (site.Params.ShowOnlySelectedPubs) -}}
+    {{- $pages = where .Pages ".Params.selected" true -}}
+  {{- end -}}
+  {{- range $pages.ByDate.Reverse }}
+    {{- partial "pub_item.html" . -}}
+  {{- end }}
+</main>
+{{ end }}
+
