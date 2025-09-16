@@ -83,7 +83,7 @@ params:
     - name: linkedin
       url: "https://www.linkedin.com/in/saejinkim97"
     - name: cv
-      url: "https://github.com/0110tpwls/0110tpwls.github.io/tree/main/static/files/cv.pdf"
+      url: "/files/cv.pdf"
 
   analytics:
     google:
