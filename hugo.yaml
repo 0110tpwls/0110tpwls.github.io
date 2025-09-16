@@ -62,7 +62,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: Saejin Kim 김세진
+    Title: Saejin Kim (김세진)
     Content: |
      I am a second-year master's student at Yonsei University advised by Prof. [Youngjae Yu](https://scholar.google.com/citations?user=WDO24ZYAAAAJ&hl=ko).
       My research interests include computer vision, deep learning, and AI applications in healthcare.
@@ -82,6 +82,8 @@ params:
       url: "https://scholar.google.com/citations?user=zplKnKQAAAAJ&hl=ko&oi=ao"
     - name: linkedin
       url: "https://www.linkedin.com/in/saejinkim97"
+    - name: cv
+      url: https://github.com/0110tpwls/0110tpwls.github.io/tree/main/static/files/cv.pdf
 
   analytics:
     google:
