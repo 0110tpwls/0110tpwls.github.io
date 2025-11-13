@@ -12,17 +12,17 @@
         {{- $imageSrc = $imageUrl | absURL }}
     {{- end }}
 {{- end }}
-<article class="first-entry home-info{{ if $hasImage }} home-info--has-image{{ end }}">
-    <div class="home-info__grid">
-        <header class="entry-header">
-            <h1>{{ .Title | markdownify }}</h1>
-        </header>
+<article class="first-entry home-info home-info--stacked">
+    <div class="home-info__stack">
         {{- if and $hasImage $imageSrc }}
         <div class="home-info__image">
             <img src="{{ $imageSrc }}" alt="{{ $imageTitle }}" title="{{ $imageTitle }}"
                 height="{{ $imageHeight }}" width="{{ $imageWidth }}" loading="lazy" decoding="async" />
         </div>
         {{- end }}
+        <header class="entry-header">
+            <h1>{{ .Title | markdownify }}</h1>
+        </header>
         <div class="entry-content">
             {{ .Content | markdownify }}
         </div>
