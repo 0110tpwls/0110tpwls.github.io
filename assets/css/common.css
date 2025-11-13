@@ -80,7 +80,6 @@
   margin: 0;
 }
 
-<<<<<<< HEAD
 .home-info__grid {
   display: flex;
   flex-direction: column;
@@ -129,26 +128,3 @@
     width: min(180px, 60vw);
   }
 }
-=======
-/* Mobile layout adjustments for home info - move image to top */
-@media screen and (max-width: 768px) {
-  .home-info {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .home-info .entry-header {
-    order: 2;
-    text-align: center;
-  }
-  
-  .home-info .entry-header-image {
-    order: 1;
-    margin-bottom: 1.5rem;
-  }
-  
-  .home-info .entry-content {
-    order: 3;
-  }
-}
->>>>>>> e4cf1cae70c28a14ee191e3c8770dee337df2389

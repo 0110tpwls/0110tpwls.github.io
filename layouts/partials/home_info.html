@@ -1,5 +1,4 @@
 {{- with site.Params.homeInfoParams }}
-<<<<<<< HEAD
 {{- $imageUrl := .imageUrl }}
 {{- $hasImage := $imageUrl }}
 {{- $imageWidth := .imageWidth | default 160 }}
@@ -27,14 +26,6 @@
         <div class="entry-content">
             {{ .Content | markdownify }}
         </div>
-=======
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
-    </header>
-    <div class="entry-content">
-        {{ .Content | markdownify }}
->>>>>>> e4cf1cae70c28a14ee191e3c8770dee337df2389
     </div>
     <footer class="entry-footer">
         {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
