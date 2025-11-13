@@ -79,3 +79,77 @@
 .results-carousel video {
   margin: 0;
 }
+
+/* Mobile layout adjustments for profile image */
+@media screen and (max-width: 768px) {
+  /* Home info section - make profile image appear on top */
+  .home-info,
+  .first-entry {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  /* Entry header container - stack vertically on mobile */
+  .first-entry .entry-header {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  
+  /* Profile image - ensure it appears first and is visible */
+  .home-info img,
+  .first-entry img,
+  .first-entry .entry-header img,
+  .first-entry .author-avatar,
+  .first-entry .author-avatar img,
+  img[alt*="profile"],
+  img[title*="profile"] {
+    order: -1 !important;
+    margin-bottom: 1.5rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-width: 160px !important;
+    width: 160px !important;
+    height: auto !important;
+  }
+  
+  /* Ensure text content appears after the image */
+  .first-entry .entry-header .entry-title,
+  .first-entry .entry-content,
+  .home-info .entry-content {
+    order: 1 !important;
+    width: 100% !important;
+  }
+  
+  /* Hide any side-by-side layouts on mobile */
+  .first-entry .entry-header > * {
+    width: 100% !important;
+  }
+  
+  /* General rule: if image and text are side-by-side, stack them vertically */
+  .first-entry .entry-header,
+  .home-info {
+    flex-wrap: wrap !important;
+  }
+  
+  /* Ensure any flex containers with image and content stack vertically */
+  .first-entry .entry-header:has(img),
+  .home-info:has(img) {
+    flex-direction: column !important;
+  }
+  
+  /* Make sure images aren't hidden by display:none or visibility:hidden */
+  .first-entry img[src*="profile"],
+  .first-entry img[src*="imgs/profile"],
+  img[src*="profile"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+  }
+}

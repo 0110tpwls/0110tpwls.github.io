@@ -10,5 +10,5 @@ authors:
   - name: Dongjun Min
   - name: Youngjae Yu
 selected: true
-paper: https://arxiv.org/abs/2406.17254
+paper: https://aclanthology.org/2025.findings-emnlp.954/
 ---
