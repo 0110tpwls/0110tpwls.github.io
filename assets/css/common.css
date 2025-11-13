@@ -84,8 +84,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   gap: clamp(0.75rem, 2vw, 1.75rem);
+}
+
+.home-info__stack .entry-header,
+.home-info__stack .entry-content {
+  text-align: center;
+  width: 100%;
 }
 
 .home-info__image {
