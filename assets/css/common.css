@@ -80,76 +80,114 @@
   margin: 0;
 }
 
-/* Mobile layout adjustments for profile image */
+/* Home info layout - desktop: image on right, mobile: image on top */
+.home-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.home-info .entry-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-info .entry-content {
+  flex: 1 1 100%;
+}
+
+.home-info .entry-header-image {
+  flex-shrink: 0;
+}
+
+.home-info .entry-header-image img {
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Mobile: show mobile-first image, hide desktop-only image */
+.home-info .mobile-first {
+  display: block;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 100%;
+  flex: 1 1 100%;
+  order: 1;
+}
+
+.home-info .desktop-only {
+  display: none;
+}
+
+/* Mobile layout - stack everything vertically */
 @media screen and (max-width: 768px) {
-  /* Home info section - make profile image appear on top */
-  .home-info,
-  .first-entry {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-  
-  /* Entry header container - stack vertically on mobile */
-  .first-entry .entry-header {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    width: 100% !important;
-  }
-  
-  /* Profile image - ensure it appears first and is visible */
-  .home-info img,
-  .first-entry img,
-  .first-entry .entry-header img,
-  .first-entry .author-avatar,
-  .first-entry .author-avatar img,
-  img[alt*="profile"],
-  img[title*="profile"] {
-    order: -1 !important;
-    margin-bottom: 1.5rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    max-width: 160px !important;
-    width: 160px !important;
-    height: auto !important;
-  }
-  
-  /* Ensure text content appears after the image */
-  .first-entry .entry-header .entry-title,
-  .first-entry .entry-content,
-  .home-info .entry-content {
-    order: 1 !important;
-    width: 100% !important;
-  }
-  
-  /* Hide any side-by-side layouts on mobile */
-  .first-entry .entry-header > * {
-    width: 100% !important;
-  }
-  
-  /* General rule: if image and text are side-by-side, stack them vertically */
-  .first-entry .entry-header,
   .home-info {
-    flex-wrap: wrap !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
-  /* Ensure any flex containers with image and content stack vertically */
-  .first-entry .entry-header:has(img),
-  .home-info:has(img) {
-    flex-direction: column !important;
+  .home-info .entry-header {
+    width: 100%;
+    order: 2;
+    text-align: center;
   }
   
-  /* Make sure images aren't hidden by display:none or visibility:hidden */
-  .first-entry img[src*="profile"],
-  .first-entry img[src*="imgs/profile"],
-  img[src*="profile"] {
+  .home-info .mobile-first {
+    order: 1;
+    width: 100%;
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
+  }
+  
+  .home-info .entry-content {
+    order: 3;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .home-info .entry-header-image img {
+    margin: 0 auto;
+    max-width: 160px;
+  }
+  
+  .home-info .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Desktop: hide mobile-first image, show desktop-only image */
+@media screen and (min-width: 769px) {
+  .home-info .mobile-first {
+    display: none !important;
+  }
+  
+  .home-info .desktop-only {
+    display: block !important;
+  }
+  
+  .home-info {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .home-info .entry-header {
+    order: 1;
+    flex: 1;
+    text-align: left;
+  }
+  
+  .home-info .desktop-only {
+    order: 2;
+    flex-shrink: 0;
+    margin-left: 2rem;
+  }
+  
+  .home-info .entry-content {
+    order: 3;
+    flex: 1 1 100%;
+    text-align: left;
   }
 }
