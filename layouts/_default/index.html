@@ -4,12 +4,17 @@
 <article class="first-entry home-info">
     {{- if .Site.Params.homeInfoParams.imageUrl }}
     <!-- Mobile: Image appears first (on top) -->
+    {{- $imageUrl := .Site.Params.homeInfoParams.imageUrl }}
+    {{- if not (hasPrefix $imageUrl "/") }}
+        {{- $imageUrl = printf "/%s" $imageUrl }}
+    {{- end }}
     <div class="entry-header-image mobile-first">
-        <img src="{{ .Site.Params.homeInfoParams.imageUrl | absURL }}" 
+        <img src="{{ $imageUrl | absURL }}" 
              alt="{{ .Site.Params.homeInfoParams.imageTitle | default "profile image" }}"
              title="{{ .Site.Params.homeInfoParams.imageTitle | default "profile image" }}"
              width="{{ .Site.Params.homeInfoParams.imageWidth | default 160 }}"
-             height="{{ .Site.Params.homeInfoParams.imageHeight | default 160 }}">
+             height="{{ .Site.Params.homeInfoParams.imageHeight | default 160 }}"
+             style="display: block; visibility: visible; opacity: 1;">
     </div>
     {{- end }}
     
@@ -19,12 +24,17 @@
     
     {{- if .Site.Params.homeInfoParams.imageUrl }}
     <!-- Desktop: Image appears on the right side -->
+    {{- $imageUrl := .Site.Params.homeInfoParams.imageUrl }}
+    {{- if not (hasPrefix $imageUrl "/") }}
+        {{- $imageUrl = printf "/%s" $imageUrl }}
+    {{- end }}
     <div class="entry-header-image desktop-only">
-        <img src="{{ .Site.Params.homeInfoParams.imageUrl | absURL }}" 
+        <img src="{{ $imageUrl | absURL }}" 
              alt="{{ .Site.Params.homeInfoParams.imageTitle | default "profile image" }}"
              title="{{ .Site.Params.homeInfoParams.imageTitle | default "profile image" }}"
              width="{{ .Site.Params.homeInfoParams.imageWidth | default 160 }}"
-             height="{{ .Site.Params.homeInfoParams.imageHeight | default 160 }}">
+             height="{{ .Site.Params.homeInfoParams.imageHeight | default 160 }}"
+             style="display: block; visibility: visible; opacity: 1;">
     </div>
     {{- end }}
     
