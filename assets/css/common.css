@@ -80,183 +80,24 @@
   margin: 0;
 }
 
-/* Home info layout - desktop: image on right, mobile: image on top */
-.home-info {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.home-info .entry-header {
-  flex: 1;
-  min-width: 0;
-}
-
-.home-info .entry-content {
-  flex: 1 1 100%;
-}
-
-.home-info .entry-header-image {
-  flex-shrink: 0;
-}
-
-.home-info .entry-header-image img {
-  border-radius: 50% !important;
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Default: hide mobile-first on desktop, show desktop-only */
-.home-info .mobile-first,
-.first-entry .mobile-first,
-article.home-info .mobile-first,
-.entry-header-image.mobile-first,
-div.mobile-first {
-  display: none !important;
-}
-
-.home-info .desktop-only,
-.first-entry .desktop-only,
-article.home-info .desktop-only,
-.entry-header-image.desktop-only,
-div.desktop-only {
-  display: block !important;
-}
-
-/* Mobile layout - stack everything vertically */
+/* Mobile layout adjustments for home info - move image to top */
 @media screen and (max-width: 768px) {
-  .home-info,
-  .first-entry.home-info,
-  article.home-info,
-  article.first-entry {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-  
-  .home-info .entry-header,
-  .first-entry .entry-header {
-    width: 100% !important;
-    order: 2 !important;
-    text-align: center !important;
-  }
-  
-  /* Force mobile-first image to be visible on mobile */
-  .home-info .mobile-first,
-  .first-entry .mobile-first,
-  article.home-info .mobile-first,
-  article.first-entry .mobile-first,
-  .entry-header-image.mobile-first {
-    order: 1 !important;
-    width: 100% !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 1 !important;
-    margin-bottom: 1.5rem !important;
-  }
-  
-  .home-info .mobile-first img,
-  .first-entry .mobile-first img,
-  article.home-info .mobile-first img,
-  article.first-entry .mobile-first img,
-  .entry-header-image.mobile-first img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    max-width: 160px !important;
-    width: 160px !important;
-    height: 160px !important;
-    object-fit: cover !important;
-    border-radius: 50% !important;
-    margin: 0 auto 1.5rem auto !important;
-    position: relative !important;
-  }
-  
-  .home-info .entry-content,
-  .first-entry .entry-content {
-    order: 3 !important;
-    width: 100% !important;
-    text-align: left !important;
-  }
-  
-  .home-info .entry-header-image img {
-    margin: 0 auto;
-    max-width: 160px;
-  }
-  
-  /* Hide desktop-only image on mobile */
-  .home-info .desktop-only,
-  .first-entry .desktop-only,
-  article.home-info .desktop-only,
-  .entry-header-image.desktop-only {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    overflow: hidden !important;
-  }
-}
-
-/* Desktop: hide mobile-first image, show desktop-only image */
-@media screen and (min-width: 769px) {
-  .home-info .mobile-first,
-  .first-entry .mobile-first,
-  article.home-info .mobile-first,
-  .entry-header-image.mobile-first {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    overflow: hidden !important;
-  }
-  
-  .home-info .desktop-only,
-  .first-entry .desktop-only,
-  article.home-info .desktop-only,
-  .entry-header-image.desktop-only {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  .home-info .desktop-only img,
-  .first-entry .desktop-only img,
-  article.home-info .desktop-only img,
-  .entry-header-image.desktop-only img {
-    border-radius: 50% !important;
-    width: 160px !important;
-    height: 160px !important;
-    object-fit: cover !important;
-    display: block !important;
-  }
-  
   .home-info {
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
   }
   
   .home-info .entry-header {
-    order: 1;
-    flex: 1;
-    text-align: left;
+    order: 2;
+    text-align: center;
   }
   
-  .home-info .desktop-only {
-    order: 2;
-    flex-shrink: 0;
-    margin-left: 2rem;
+  .home-info .entry-header-image {
+    order: 1;
+    margin-bottom: 1.5rem;
   }
   
   .home-info .entry-content {
     order: 3;
-    flex: 1 1 100%;
-    text-align: left;
   }
 }
