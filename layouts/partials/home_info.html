@@ -1,0 +1,34 @@
+{{- with site.Params.homeInfoParams }}
+{{- $imageUrl := .imageUrl }}
+{{- $hasImage := $imageUrl }}
+{{- $imageWidth := .imageWidth | default 160 }}
+{{- $imageHeight := .imageHeight | default 160 }}
+{{- $imageTitle := .imageTitle | default "profile image" }}
+{{- $imageSrc := "" }}
+{{- if $hasImage }}
+    {{- if (urls.Parse $imageUrl).IsAbs }}
+        {{- $imageSrc = $imageUrl }}
+    {{- else }}
+        {{- $imageSrc = $imageUrl | absURL }}
+    {{- end }}
+{{- end }}
+<article class="first-entry home-info{{ if $hasImage }} home-info--has-image{{ end }}">
+    <div class="home-info__grid">
+        <header class="entry-header">
+            <h1>{{ .Title | markdownify }}</h1>
+        </header>
+        {{- if and $hasImage $imageSrc }}
+        <div class="home-info__image">
+            <img src="{{ $imageSrc }}" alt="{{ $imageTitle }}" title="{{ $imageTitle }}"
+                height="{{ $imageHeight }}" width="{{ $imageWidth }}" loading="lazy" decoding="async" />
+        </div>
+        {{- end }}
+        <div class="entry-content">
+            {{ .Content | markdownify }}
+        </div>
+    </div>
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}
