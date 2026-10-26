@@ -1,7 +1,7 @@
 {{ define "main" }}
-<h1>About me</h1><p class="page-lead">My research interests are visual reasoning, multimodal learning, and document comprehension.</p>
-<p>I am a PhD student in Computer Science and Engineering at <a href="https://pi.snu.ac.kr/people/saejin.html">SNU PI Lab at Seoul National University</a>. Previously, I completed my master’s in Artificial Intelligence at Yonsei University, advised by <a href="https://scholar.google.com/citations?user=WDO24ZYAAAAJ&amp;hl=ko">Prof. Youngjae Yu</a>.</p>
-<p>You can explore my <a href="/pubs/">publications</a> and <a href="/projects/">projects</a>, or read my <a href="/cv/">curriculum vitae</a> for a full overview of my background.</p>
+<h1>About me</h1>
+<p>I’m Saejin Kim, a Ph.D. student in Computer Science and Engineering at Seoul National University, working with Prof. Youngjae Yu in <a href="https://pi.snu.ac.kr/">SNU PI Lab</a>. I previously completed my master’s degree in Artificial Intelligence at Yonsei University.</p>
+<p>My research focuses on multimodal reasoning and visual evidence. One question connects much of my work: when a model gives an answer, what did it actually see, and how did that evidence shape its reasoning? I study this question across images, documents, and videos, with the goal of making multimodal models more reliable and their reasoning easier to examine.</p>
 <section class="academic-section selected-work"><div class="section-heading--row"><h2>Selected publications</h2><a href="/pubs/">View all →</a></div><p class="publication-note">* Equal contribution · ^ Corresponding author</p>{{ range (where (where site.RegularPages "Section" "pubs") "Params.selected" true).ByDate.Reverse }}{{ partial "academic_publication.html" . }}{{ end }}</section>
 <section class="academic-section" id="experience" aria-labelledby="experience-heading">
   <div class="section-heading"><span class="eyebrow">Background</span><h2 id="experience-heading">Education</h2></div>
@@ -19,7 +19,7 @@
     <article>
       <span class="timeline-date">2026–2028</span>
       <div>
-        <h3>Traceable Multi-step Multimodal Reasoning via Visual Evidence Alignment and Reinforcement Learning</h3><p>Research Subsidies for Ph.D. Candidates</p>
+        <h3>Traceable Multi-step Multimodal Reasoning via Visual Evidence Alignment and Reinforcement Learning</h3>
         <p>National Research Foundation of Korea (NRF)</p>
         <p class="muted">Role: PI</p>
       </div>
