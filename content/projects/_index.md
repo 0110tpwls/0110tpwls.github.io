@@ -19,3 +19,12 @@ Industry–Academic Research Collaboration
 ## Multimodal RAG for Korean LLM
 2024 · Hyundai Group\
 Industry–Academic Research Collaboration
+
+---
+
+## Research Funding
+
+### Traceable Multi-step Multimodal Reasoning via Visual Evidence Alignment and Reinforcement Learning
+
+2026–2028 · National Research Foundation of Korea (NRF)\
+Role: PI
