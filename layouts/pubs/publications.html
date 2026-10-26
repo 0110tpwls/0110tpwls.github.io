@@ -1,0 +1,20 @@
+{{ define "main" }}
+<header class="publication-page-heading">
+  <span class="eyebrow">Research archive</span>
+  <h1>Publications</h1>
+  <p>Peer-reviewed publications and public preprints.</p>
+  <p class="publication-note">* Equal contribution · ^ Corresponding author</p>
+</header>
+<section aria-labelledby="reviewed-heading">
+  <h2 id="reviewed-heading" class="archive-section-title">Peer-reviewed publications</h2>
+  {{ range (where .RegularPages "Params.preprint" "ne" true).ByDate.Reverse }}
+    {{ partial "academic_publication.html" . }}
+  {{ end }}
+</section>
+<section aria-labelledby="preprints-heading">
+  <h2 id="preprints-heading" class="archive-section-title">Preprints</h2>
+  {{ range (where .RegularPages "Params.preprint" true).ByDate.Reverse }}
+    {{ partial "academic_publication.html" . }}
+  {{ end }}
+</section>
+{{ end }}

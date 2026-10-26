@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html lang="en"><head>{{ partial "head.html" . }}</head>
+<body id="top">{{ partial "header.html" . }}
+<div class="research-banner" aria-hidden="true"><span></span><i></i><b></b></div>
+<div class="academic-shell">{{ partial "home_info.html" . }}<main id="main-content" class="academic-main" tabindex="-1">{{ block "main" . }}{{ end }}</main></div>
+{{ partial "footer.html" . }}</body></html>

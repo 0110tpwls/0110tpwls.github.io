@@ -1,0 +1,4 @@
+<article class="publication">
+  <div class="publication-venue">{{ .Params.venue }}{{ if eq (lower .Params.venue) "arxiv" }}<span>Preprint · {{ .Date.Format "2006" }}</span>{{ end }}</div>
+  <div><h3>{{ .Title }}</h3><p class="authors">{{ range $i, $author := .Params.authors }}{{ if $i }}, {{ end }}{{ $author.name | safeHTML }}{{ end }}</p><div class="paper-links">{{ with .Params.paper }}<a href="{{ . }}">Paper <span aria-hidden="true">↗</span></a>{{ end }}{{ with .Params.arxiv }}<a href="{{ . }}">arXiv <span aria-hidden="true">↗</span></a>{{ end }}{{ with .Params.page }}<a href="{{ . }}">Project page <span aria-hidden="true">↗</span></a>{{ end }}{{ with .Params.code }}<a href="{{ . }}">Code <span aria-hidden="true">↗</span></a>{{ end }}</div></div>
+</article>

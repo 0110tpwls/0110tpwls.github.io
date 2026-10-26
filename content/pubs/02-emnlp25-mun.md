@@ -1,7 +1,7 @@
 ---
 title: "Multimodal UNcommonsense: From Odd to Ordinary and Ordinary to Odd"
 date: 2025-10-10
-venue: EMNLP 2025
+venue: EMNLP (Findings) 2025
 authors: 
   - name: Yejin Son*
     home: https://ozzaney.github.io/

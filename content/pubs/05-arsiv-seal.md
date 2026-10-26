@@ -1,7 +1,8 @@
 ---
 title: "SEAL: Entangled White-box Watermarks on Low-Rank Adaptation"
 date: 2025-01-17
-venue: Arxiv
+venue: arXiv
+preprint: true
 authors:
   - name: Giyeong Oh
     home: https://github.com/BootsofLagrangian

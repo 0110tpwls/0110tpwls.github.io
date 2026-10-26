@@ -1,0 +1,29 @@
+{{ define "main" }}
+<h1>About me</h1><p class="page-lead">My research interests are visual reasoning, multimodal learning, and document comprehension.</p>
+<p>I am a PhD student in Computer Science and Engineering at <a href="https://pi.snu.ac.kr/people/saejin.html">SNU PI Lab at Seoul National University</a>. Previously, I completed my master’s in Artificial Intelligence at Yonsei University, advised by <a href="https://scholar.google.com/citations?user=WDO24ZYAAAAJ&amp;hl=ko">Prof. Youngjae Yu</a>.</p>
+<p>You can explore my <a href="/pubs/">publications</a> and <a href="/projects/">projects</a>, or read my <a href="/cv/">curriculum vitae</a> for a full overview of my background.</p>
+<section class="academic-section selected-work"><div class="section-heading--row"><h2>Selected publications</h2><a href="/pubs/">View all →</a></div><p class="publication-note">* Equal contribution · ^ Corresponding author</p>{{ range (where (where site.RegularPages "Section" "pubs") "Params.selected" true).ByDate.Reverse }}{{ partial "academic_publication.html" . }}{{ end }}</section>
+<section class="academic-section" id="experience" aria-labelledby="experience-heading">
+  <div class="section-heading"><span class="eyebrow">Background</span><h2 id="experience-heading">Education</h2></div>
+  <div class="timeline">
+    <article><span class="timeline-date">2026–present</span><div><h3>Seoul National University</h3><p>PhD student · Computer Science and Engineering</p><p class="muted">SNU PI Lab</p></div></article>
+    <article><span class="timeline-date">May 2023–Feb 2026</span><div><h3>Yonsei University</h3><p>M.S. in Artificial Intelligence</p><p class="muted">Multimodal Intelligence Research Lab · Advisor: Youngjae Yu</p></div></article>
+    <article><span class="timeline-date">2017–2023</span><div><h3>Yonsei University</h3><p>B.E. in Computer Science</p></div></article>
+  </div>
+</section>
+<section class="academic-section"><h2>Experience</h2><div class="timeline">    <article><span class="timeline-date">Winter 2026</span><div><h3>Research Intern</h3><p>Upstage</p><p class="muted">Multimodal Document Understanding</p></div></article>
+    <article><span class="timeline-date">Summer 2021</span><div><h3>Application Engineer Intern</h3><p>Neurocle</p><p>Deep learning model performance analysis and optimization.</p></div></article>
+</div></section><section class="academic-section" id="funding" aria-labelledby="funding-heading">
+  <div class="section-heading"><span class="eyebrow">Support</span><h2 id="funding-heading">Research Funding</h2></div>
+  <div class="timeline">
+    <article>
+      <span class="timeline-date">2026–2028</span>
+      <div>
+        <h3>Traceable Multi-step Multimodal Reasoning via Visual Evidence Alignment and Reinforcement Learning</h3><p>Research Subsidies for Ph.D. Candidates</p>
+        <p>National Research Foundation of Korea (NRF)</p>
+        <p class="muted">Role: PI</p>
+      </div>
+    </article>
+  </div>
+</section>
+{{ end }}

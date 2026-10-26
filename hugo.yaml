@@ -18,12 +18,12 @@ minify:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Saejin Kim 김세진
-  description: "Student researcher"
+  description: "Saejin Kim is a PhD student at Seoul National University, researching visual reasoning, multimodal learning, and document comprehension."
   keywords: ["computer vision", "machine learning", "researcher"]
   author: Saejin Kim
   images: ["imgs/profile.jpg"]
   defaultTheme: light
-  disableThemeToggle: false
+  disableThemeToggle: true
 
   ShowOnlySelectedPubs: true
   ShowReadingTime: true
@@ -64,8 +64,8 @@ params:
   homeInfoParams:
     Title: Saejin Kim (김세진)
     Content: |
-     I am a second-year master's student at Yonsei University advised by Prof. [Youngjae Yu](https://scholar.google.com/citations?user=WDO24ZYAAAAJ&hl=ko).
-      My research interests include computer vision, deep learning, and AI applications in healthcare.
+     I am a PhD student at Seoul National University. I completed my master’s at Yonsei University, advised by Prof. [Youngjae Yu](https://scholar.google.com/citations?user=WDO24ZYAAAAJ&hl=ko).
+      My research interests include visual reasoning, multimodal learning, and document comprehension.
       I'm passionate about developing intelligent systems that can benefit society.
       
     imageUrl: "imgs/profile.jpg"
@@ -75,7 +75,7 @@ params:
   
   socialIcons:
     - name: email
-      url: "mailto:0110tpwls[at]yonsei.ac.kr"
+      url: "mailto:jerry0110@snu.ac.kr"
     - name: github
       url: "https://github.com/0110tpwls"
     - name: googlescholar
@@ -83,7 +83,7 @@ params:
     - name: linkedin
       url: "https://www.linkedin.com/in/saejinkim97"
     - name: cv
-      url: "https://github.com/0110tpwls/0110tpwls.github.io/tree/main/static/files/cv.pdf"
+      url: "/files/cv.pdf"
 
   analytics:
     google:
